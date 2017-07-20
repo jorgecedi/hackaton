@@ -179,7 +179,7 @@
     {% block content %}{% endblock %}    
     </div>
   </div>
-
+  {% block end_scripts %} 
   <!-- jQuery -->
   <script src="{{url_for('static',filename='assets/vendor/jquery.min.js')}}"></script>
 
@@ -231,6 +231,6 @@
   <script src="{{url_for('static',filename='assets/vendor/sweetalert.min.js')}}"></script>
 
   <!-- Initialize -->
-  <script src="{{url_for('static',filename='assets/js/sweetalert.js"')}}></script>
-  
+  <script src="{{url_for('static',filename='assets/js/sweetalert.js"')}}"></script>
+  {% endblock %}
 </body></html>

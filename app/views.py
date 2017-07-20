@@ -33,6 +33,10 @@ def profile():
 def data():
 	return render_template('data.html',title='Visualizacion de Datos Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy')
 
+@app.route('/mapa', methods=['GET'])
+def mapa():
+    return render_template('mapa.html', title='Mapa de Datos Poncho 2017', title_dashboard='Poncho 2017', user='Daniel Godoy')
+
 
 @app.route('/logout')
 def logout():

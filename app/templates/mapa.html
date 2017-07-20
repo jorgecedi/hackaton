@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+  <div class="card-header"></div>
+  <script data-main="{{ url_for('static', filename='assets/js/app') }}" src="{{ url_for('static', filename='assets/js/lib/require.js') }}"></script>
+
+  <style>
+      #map{
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+  <div id="map"></div>
+  <script id="template">
+    {% raw %}
+    {% endraw %}
+  </script>
+  <script>
+    window.load_app = function(){
+      window.map_view = new MapView({
+        //url: 'data.json',
+        url: 'https://sgtur.catamarca.gob.ar/api/v1/hospedaje/?geojson=true&dist=400000&format=json',
+        yourPositionMarker: true,
+        pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
+        //centerPin: '/img/pin.png',
+        popupTemplate: $("#template").html()
+      });
+    }
+  </script>
+
+</div>
+{% endblock %}
+{% block end_scripts %}{% endblock %}
