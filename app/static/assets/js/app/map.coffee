@@ -23,7 +23,10 @@ require [
   class MarkerList extends Backbone.Collection
     model: MarkerModel
     parse: (data)->
-        return data.features
+        if data.features
+            return data.features
+        else
+            return data
     initialize: (opts)->
       if opts
         if opts.url
@@ -105,14 +108,35 @@ require [
       list.fetch
         success: ->
           infowindow = null
+          $("#lista").html(null)
           list.forEach (m, i)->
-            if m.get 'geometry'
+            if m.get('geometry') or m.get('ubicacion')
                 console.log m.get('geometry')
+                lat = 0
+                lng = 0
+                if m.get 'geometry'
+                    lat = m.get('geometry')['coordinates'][1]
+                    lng = m.get('geometry')['coordinates'][0]
+                if m.get 'ubicacion'
+                    lat = m.get('ubicacion')['coordinates'][1]
+                    lng = m.get('ubicacion')['coordinates'][0]
+                console.log lat,lng
                 self.markers[m.get 'id'] = new google.maps.Marker
-                  position: new google.maps.LatLng m.get('geometry')['coordinates'][1], m.get('geometry')['coordinates'][0]
+                  position: new google.maps.LatLng lat, lng
                   map: self.map
                   title: "H",
                   icon: pinsImage
+
+                nombre = ""
+                domicilio = ""
+                if m.get 'properties'
+                    nombre = m.get('properties').nombre
+                    domicilio = m.get('properties').domicilio
+                else
+                    nombre = m.get('nombre')
+                    domicilio = m.get('domicilio')
+                $("#lista").append('<div class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>')
+                console.log $("#lista")
 
                 if self.opts.popupTemplate
                   template = Handlebars.compile(self.opts.popupTemplate)
