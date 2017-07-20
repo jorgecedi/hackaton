@@ -206,8 +206,16 @@
       };
 
       MapView.prototype.geolocationErrorCallback = function(err) {
+        var position;
         if (err.code === 1) {
-          return console.log("Denied by user.");
+          console.log("Denied by user.");
+          position = {
+            coords: {
+              latitude: -28.4601593,
+              longitude: -65.7642746
+            }
+          };
+          return storePosition(position);
         }
       };
 

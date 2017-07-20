@@ -163,6 +163,12 @@ require [
     geolocationErrorCallback: (err)->
       if err.code == 1
         console.log "Denied by user."
+        position =
+            coords:
+                latitude : -28.4601593
+                longitude: -65.7642746
+        storePosition position
+
 
   # Inicia la aplicación
   window.MapView = MapView
