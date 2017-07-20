@@ -109,6 +109,7 @@ require [
         success: ->
           infowindow = null
           $("#lista").html(null)
+          $("#loading").hide()
           list.forEach (m, i)->
             if m.get('geometry') or m.get('ubicacion')
                 console.log m.get('geometry')

@@ -1,77 +1,95 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="card">
-  <div class="card-header" style="text-align: center">
-    <button onclick="changeMap('agencia')">Agencias</button>
-    <button onclick="changeMap('hospedaje')">Hospedaje</button>
-    <button>Tranporte</button>
-    <button>Guias</button>
-  </div>
-  <script data-main="{{ url_for('static', filename='assets/js/app') }}" src="{{ url_for('static', filename='assets/js/lib/require.js') }}"></script>
-
-  <style>
-    #map{
-      height: 500px;
-      width: 75%;
-      float: left;
-    }
-    .custom_popup{
-      min-height: 40px;
-    }
-    #lista{
-      width:25%;
-      float: left;
-      background-color: #F5F5F5;
-      border-radius: 3px 3px 0 0;
-      height: 500px;
-      overflow: auto;
-    }
-    .ubicacion{
-      width:90%;
-      min-height: 50px;
-      margin: 10px auto;
-      //background-color: #0f0;
-    }
-  </style>
-  <div id="lista" class="card-header">
-  </div>
-  <div id="map"></div>
-  <div style="display:none;" id="template" type="text/html">
-    {% raw %}
-    <div class="custom_popup">
-      <b>{{#if m.attributes.properties }}{{ m.attributes.properties.nombre }}{{else}}{{ m.attributes.nombre }}{{/if}}</b><br/>
-      <p>Domicilio: {{#if m.attributes.properties.domicilio}}{{ m.attributes.properties.domicilio }}{{else}}{{ m.attributes.domicilio }}{{/if}}</p>
-
+    <div class="card-header" style="text-align: center">
+        <button class="btn btn-info active" onclick="changeMap('agencia', this)">Agencias</button>
+        <button class="btn btn-info" onclick="changeMap('hospedaje', this)">Hospedaje</button>
+        <button class="btn btn-info">Tranporte</button>
+        <button class="btn btn-info">Guias</button>
     </div>
-    {% endraw %}
-  </div>
-  <script>
-    window.load_app = function(){
-      window.map_view = new MapView({
-        //url: 'data.json',
-        url: 'https://sgtur.catamarca.gob.ar/api/v1/agencia/?geojson=true&dist=400000&format=json',
-        yourPositionMarker: true,
-        pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
-        //centerPin: '/img/pin.png',
-        popupTemplate: $("#template").html()
-      });
-    }
-  function changeMap(tipo){
+    <script data-main="{{ url_for('static', filename='assets/js/app') }}" src="{{ url_for('static', filename='assets/js/lib/require.js') }}"></script>
+
+    <style>
+        #map{
+            height: 500px;
+            width: 75%;
+            float: left;
+        }
+        .custom_popup{
+            min-height: 40px;
+        }
+        #lista{
+            width:25%;
+            float: left;
+            background-color: #F5F5F5;
+            border-radius: 3px 3px 0 0;
+            height: 500px;
+            overflow: auto;
+        }
+        .ubicacion{
+            width:90%;
+            min-height: 50px;
+            margin: 10px auto;
+            //background-color: #0f0;
+        }
+        #loading{
+            position:relative;
+            background-color:rgba(0,0,0,.5);
+            width: 100%;
+            height: 500px;
+            top:0px;
+        }
+    </style>
+    <div id="lista" class="card-header">
+    </div>
+    <div id="map"></div>
+    <div style="display:none;" id="template" type="text/html">
+        {% raw %}
+        <div class="custom_popup">
+            <b>{{#if m.attributes.properties }}{{ m.attributes.properties.nombre }}{{else}}{{ m.attributes.nombre }}{{/if}}</b><br/>
+            <p>Domicilio: {{#if m.attributes.properties.domicilio}}{{ m.attributes.properties.domicilio }}{{else}}{{ m.attributes.domicilio }}{{/if}}</p>
+
+        </div>
+        {% endraw %}
+    </div>
+    <script>
+        window.load_app = function(){
+            $("#loading").show();
+            window.map_view = new MapView({
+                //url: 'data.json',
+                url: 'https://sgtur.catamarca.gob.ar/api/v1/agencia/?geojson=true&dist=400000&format=json',
+                yourPositionMarker: true,
+                pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
+                //centerPin: '/img/pin.png',
+                popupTemplate: $("#template").html()
+            });
+        }
+function changeMap(tipo, t){
+    console.log($(t).parent())
+    $(t).parent().find('button').each(function(i){
+        $(this).removeClass('active');
+    })
+    $(t).addClass('active');
+
 
     window.load_app = function(){
-      window.map_view = new MapView({
-        //url: 'data.json',
-        url: 'https://sgtur.catamarca.gob.ar/api/v1/' + tipo + '/?geojson=true&dist=400000&format=json',
-        yourPositionMarker: true,
-        pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
-        //centerPin: '/img/pin.png',
-        popupTemplate: $("#template").html()
-      });
+        $("#loading").show();
+        window.map_view = new MapView({
+            //url: 'data.json',
+            url: 'https://sgtur.catamarca.gob.ar/api/v1/' + tipo + '/?geojson=true&dist=400000&format=json',
+            yourPositionMarker: true,
+            pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
+            //centerPin: '/img/pin.png',
+            popupTemplate: $("#template").html()
+        });
     }
     load_app()
-  }
-  </script>
+}
+    </script>
 
+    <div id="loading">
+
+    </div>
 </div>
 {% endblock %}
 {% block end_scripts %}{% endblock %}

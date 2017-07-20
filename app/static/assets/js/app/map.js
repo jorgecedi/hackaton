@@ -156,6 +156,7 @@
             var infowindow;
             infowindow = null;
             $("#lista").html(null);
+            $("#loading").hide();
             list.forEach(function(m, i) {
               var contentString, domicilio, lat, lng, nombre, template;
               if (m.get('geometry') || m.get('ubicacion')) {
