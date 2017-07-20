@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head>
+  <html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Dashboard</title>
+  <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+  <meta name="robots" content="noindex">
+  <!-- Material Design Icons  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Roboto Web Font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+  <!-- Simplebar.js -->
+  <link type="text/css" href="{{url_for('static',filename='assets/vendor/simplebar.css')}}" rel="stylesheet">
+  <!-- App CSS -->
+  <link type="text/css" href="{{url_for('static',filename='assets/css/style.min.css')}}" rel="stylesheet">
+<style>
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style>
+<style>
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style></head>
+<body class="login">
+  <div class="row" style="margin-top:75px;">
+    <div class="col-sm-4 col-sm-push-4 col-md-4 col-md-push-4 col-lg-4 col-lg-push-4">
+      <div class="card-group">
+        <div class="card bg-transparent">
+          <div class="card-block">
+            <div class="center">
+              <h4 class="m-b-0"><span class="icon-text">Dashboard</span></h4>
+              <p class="text-muted">Ingrese a su cuenta</p>
+            </div>
+            <form method="POST" >
+              <div class="form-group">
+                <input type="text" name="usuario" class="form-control" placeholder="Usuario">
+              </div>
+              <div class="form-group">
+                <input type="password" name="clave" class="form-control" placeholder="Clave">
+
+                <div class="clearfix"></div>
+              </div>
+              <div class="center">
+                <button type="submit" name="submit"  class="btn  btn-primary-outline btn-circle-large">
+                  <i class="material-icons">lock</i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery -->
+  <script src="{{url_for('static',filename='assets/vendor/jquery.min.js')}}"></script>
+  <!-- Bootstrap -->
+  <script src="{{url_for('static',filename='assets/vendor/tether.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap.min.js')}}"></script>
+  <!-- Simplebar.js -->
+  <script src="{{url_for('static',filename='assets/vendor/simplebar.min.js')}}"></script>
+  <!-- Bootstrap Layout -->
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-layout.js')}}"></script>
+  <!-- Bootstrap Layout Scrollable Extension JS -->
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-layout-scrollable.js')}}"></script>
+</body></html>

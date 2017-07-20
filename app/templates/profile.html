@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Perfil</title>
+
+  <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+  <meta name="robots" content="noindex">
+
+  <!-- Material Design Icons  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Roboto Web Font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+
+  <!-- Simplebar.js -->
+  <link type="text/css" href="{{url_for('static',filename='assets/vendor/simplebar.css')}}" rel="stylesheet">
+
+  <!-- App CSS -->
+  <link type="text/css" href="{{url_for('static',filename='assets/css/style.min.css')}}" rel="stylesheet">
+
+<style>
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style></head>
+
+<body class="layout-container ls-top-navbar layout-sidebar-l3-md-up breakpoint-768">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-full navbar-fixed-top navbar-light bg-white ls-left-sidebar">
+
+    <!-- Sidebar toggle -->
+    <button class="navbar-toggler pull-xs-left hidden-lg-up active" type="button" data-toggle="sidebar" data-target="#sidebarLeft"><span class="material-icons">menu</span></button>
+
+    <!-- Navbar toggle -->
+    <button class="navbar-toggler hidden-md-up pull-xs-right" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-expanded="true"><span class="material-icons">menu</span></button>
+
+    <!-- Brand -->
+    <a class="navbar-brand first-child-lg" href="profile">Perfil</a>
+
+    <!-- Collapse -->
+    <div class="collapse navbar-toggleable-xs" id="navbarMenu">
+
+      <!-- Menu -->
+      <ul class="nav navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="dashboard">Dashboard</a>
+        </li>
+      </ul>
+      <!-- // END Menu -->
+
+    </div>
+    <!-- // END Collapse -->
+
+  </nav>
+  <!-- // END Navbar -->
+
+  <!-- Sidebar -->
+  <div class="sidebar sidebar-left sidebar-size-3 sidebar-visible-md-up sidebar-dark bg-primary simplebar sidebar-visible" id="sidebarLeft" data-scrollable="" style="overflow: auto;">
+
+    <!-- Brand -->
+    <a href="dashboard" class="sidebar-brand sidebar-brand-border sidebar-brand-bg m-b-0">
+    <i class="material-icons">flash_on</i> {{title_dashboard}}    </a>
+
+    <!-- Avatar -->
+    <div class="sidebar-user-center m-b-0">
+      <a href="user-profile.html" class="sidebar-user-avatar">
+        <img src="{{url_for('static',filename='assets/images/people/50/profile.jpg')}}" alt="" class="img-circle">
+      </a>
+      <div class="user-info">
+        <a href="user-profile.html#" class="h6">{{user}}</a>
+      </div>
+      <div class="user-extras">
+        <a href="user-profile.html#"><i class="material-icons">contacts</i> 124</a>
+        <a href="user-profile.html#"><i class="material-icons">star</i> 11</a>
+        <a href="user-profile.html#"><i class="material-icons">group</i> 59</a>
+      </div>
+    </div>
+
+    <!-- User Menu -->
+    <ul class="sidebar-menu">
+      <li class="sidebar-menu-item active">
+        <a class="sidebar-menu-button" href="edit_profile">
+          <i class="sidebar-menu-icon material-icons">person_outline</i> Editar Perfil
+        </a>
+      </li>
+      <li class="sidebar-menu-item">
+        <a class="sidebar-menu-button" href="change_password">
+          <i class="sidebar-menu-icon material-icons">security</i> Cambiar Clave
+        </a>
+      </li>
+      <li class="sidebar-menu-item">
+        <a class="sidebar-menu-button" href="logout">
+          <i class="sidebar-menu-icon material-icons">settings_power</i> Cerrar Sesión
+        </a>
+      </li>
+    </ul>
+
+    <!-- About -->
+    <div class="sidebar-heading">Sobre Mi</div>
+    <p>{{about}}</p>
+
+
+  </div>
+  <!-- // END Sidebar -->
+
+  <!-- Right Sidebars -->
+
+  <!-- Content -->
+  <div class="layout-content simplebar" data-scrollable="" style="overflow: auto;">
+    <div class="container-fluid">
+
+
+
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="{{url_for('static',filename='assets/vendor/jquery.min.js')}}"></script>
+
+  <!-- Bootstrap -->
+  <script src="{{url_for('static',filename='assets/vendor/tether.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap.min.js')}}"></script>
+
+  <!-- Simplebar.js -->
+  <script src="{{url_for('static',filename='assets/vendor/simplebar.min.js')}}"></script>
+
+  <!-- Bootstrap Layout -->
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-layout.js')}}"></script>
+
+  <!-- Bootstrap Layout Scrollable Extension JS -->
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-layout-scrollable.js')}}"></script>
+
+
+
+</body>
+</html>

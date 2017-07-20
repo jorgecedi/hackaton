@@ -1,0 +1,168 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card card-stats-primary">
+        <div class="card-block">
+          <div class="media">
+            <div class="media-left media-middle">
+              <i class="material-icons text-muted-light">event</i>
+            </div>
+            <div class="media-body media-middle">
+              Fecha del Hackaton
+              <strong>20 de Julio de 2017</strong>
+            </div>
+            <div class="media-right">
+  
+            </div>
+          </div>
+        </div>
+</div>
+
+<div class="row m-b-1">
+        <div class="col-md-6">
+          <div class="card card-stats-primary">
+            <div class="card-block">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <i class="material-icons text-primary md-36">query_builder</i>
+                </div>
+                <div class="media-body media-middle">
+                  <h4 class="card-title m-b-0">
+                    <strong class="text-primary">Horario Inicio: </strong> 9:00 AM
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card card-stats-success">
+            <div class="card-block">
+              <div class="media">
+                <div class="media-left media-middle">
+                  <i class="material-icons text-success md-36">done_all</i>
+                </div>
+                <div class="media-body media-middle">
+                  <h4 class="card-title m-b-0">
+                    <strong class="text-success">Horario Final</strong> 11:00 AM (21 de Julio)
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+<div class="card">
+    <div class="card-header">
+          <h4 class="card-title">Notificacion de la Plataforma</h4>
+    </div>
+    <div class="card-block">
+
+  <div class="card card-warning center">
+      <div class="card-block">
+            <strong>Recordatorio!</strong> Recuerde realizar su pedido con 15 dias de anticipacion.
+        </div>
+    </div>
+    <hr>
+
+<div class="row">
+
+    <div class="col-xl-4">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Vendedor Asignado</h4>
+
+            </div>
+            <div class="card-block">
+              <ul class="list-unstyled lead">
+                <li><i class="material-icons text-muted-light">person</i> Adrian Demian</li>
+                <li><i class="material-icons text-muted-light">call</i> +1 341019941</li>
+              </ul>
+            </div>
+          </div>
+
+    </div>
+    <div class="col-xl-4">
+      <div class="card">
+            <div class="card-header bg-white">
+              <h4 class="card-title">Reconocimientos</h4>
+              <p class="card-subtitle">En base a sus pedidos</p>
+            </div>
+            <div class="card-block center">
+              <div class="btn btn-primary btn-circle"><i class="material-icons">thumb_up</i></div>
+              <div class="btn btn-danger btn-circle"><i class="material-icons">grade</i></div>
+              <div class="btn btn-success btn-circle"><i class="material-icons">bubble_chart</i></div>
+              <div class="btn btn-warning btn-circle"><i class="material-icons">keyboard_voice</i></div>
+              <div class="btn btn-info btn-circle"><i class="material-icons">event_available</i></div>
+            </div>
+          </div>
+
+    </div>
+    <div class="col-xl-4">
+<div class="card">
+            <div class="card-header bg-white">
+              <h4 class="card-title">GitHub</h4>
+              <p class="card-subtitle"></p>
+            </div>
+            <ul class="list-group list-group-fit">
+              <li class="list-group-item">
+                <div class="media m-b-0">
+                  <div class="media-left media-middle">
+                    <a href="https://github.com/ertek">
+                      <img src="{{url_for('static',filename='assets/images/github.png')}}" alt="Guy" width="20" class="img-circle">
+                    </a>
+                  </div>
+                  <div class="media-body media-middle">
+                    <p class="m-b-0">
+                      <a href="https://github.com/ertek">ertek</a>
+                      <br>
+                    </p>
+
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media m-b-0">
+                  <div class="media-left media-middle">
+                    <a href="#">
+                      <img src="{{url_for('static',filename='assets/images/github.png')}}" alt="Guy" width="20" class="img-circle">
+                    </a>
+                  </div>
+                  <div class="media-body media-middle">
+                    <p class="m-b-0">
+                      <a href="https://github.com/hielasangre">hielasangre</a>
+                      <br>
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-group-item">
+                <div class="media m-b-0">
+                  <div class="media-left media-middle">
+                    <a href="#">
+                      <img src="{{url_for('static',filename='assets/images/github.png')}}" alt="Guy" width="20" class="img-circle">
+                    </a>
+                  </div>
+                  <div class="media-body media-middle">
+                    <p class="m-b-0">
+                      <a href="https://github.com/hjais">hjais</a>
+                      <br>
+                    </p>
+
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

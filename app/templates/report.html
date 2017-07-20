@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+        <div class="card-header"></div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td align="center"> #</td>
+              <td align="center"> Nombre</td>
+              <td align="center" > Domicilio</td>
+              <td align="center"> Representante</td>
+              <td align="center" > Categoria</td>
+              <td align="center"> CUIT </td>
+              <td align="center"> Opciones</td>
+            </tr>
+          </thead>
+          <tbody style="font-size:10px;">
+        {% for agencia in agencias %} 
+            <tr>
+              <td  width="5%" align="left"> </td> 
+              <td  width="20%"> {{agencia.nombre}}</td> 
+              <td  width="20%" > {{agencia.domicilio}}</td> 
+              <td width="10%">{{agencia.representante_tecnico}}</td>
+              <td  width="10%" > {{agencia.categoria}}</td>
+              <td width="10%" > {{agencia.cuit}}</td>
+              <td  width="18%" align="center" >
+              	<a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
+				<a class="btn btn-info btn-rounded btn-xs" href=""><i class="material-icons">map</i></a>
+				<a class="btn btn-success btn-rounded btn-xs" href="{{agencia.url_certificado_nacional}}" target="_blank"><i class="material-icons">check</i></a>
+            </tr>
+
+        {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% endblock %}

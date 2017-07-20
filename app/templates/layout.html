@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{{ title }}</title>
+  <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+  <meta name="robots" content="noindex">
+  <!-- Material Design Icons  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Roboto Web Font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+  <!-- Simplebar.js -->
+  <link type="text/css" href="{{url_for('static',filename='assets/vendor/simplebar.css')}}" rel="stylesheet">
+  <!-- App CSS -->
+  <link type="text/css" href="{{url_for('static',filename='assets/css/style.min.css')}}" rel="stylesheet">
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/datatables.min.css')}}">
+  <!-- morris.js Charts CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/morris.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/bootstrap-datepicker.min.css')}}">
+  <!-- Timepicker -->
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/bootstrap-timepicker.min.css')}}">
+  <!-- Required by summernote -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontawesome/4.5.0/css/font-awesome.min.css">
+  <!-- Summernote WYSIWYG -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css">
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/summernote.min.css')}}">
+  <!-- Touchspin -->
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/bootstrap-touchspin.min.css')}}">
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/sweetalert.min.css')}}">
+
+<style>
+#content > #right > .dose > .dosesingle,
+#content > #center > .dose > .dosesingle
+{display:none !important;}</style></head>
+<body class="layout-container ls-top-navbar layout-sidebar-l3-md-up breakpoint-992">
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-white navbar-full navbar-fixed-top ls-left-sidebar">
+    <!-- Sidebar toggle -->
+    <button class="navbar-toggler pull-xs-left hidden-lg-up active" type="button" data-toggle="sidebar" data-target="#sidebarLeft"><span class="material-icons">menu</span></button>
+    <!-- Brand -->
+    <a class="navbar-brand first-child-lg" href="dashboard">Dashboard</a>
+
+
+    <!-- Menu -->
+    <ul class="nav navbar-nav pull-xs-right hidden-md-down">
+
+      <!-- Notifications dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-caret="false" data-toggle="dropdown" role="button" aria-haspopup="false"><i class="material-icons email">mail_outline</i></a>
+        <ul class="dropdown-menu dropdown-menu-right notifications" aria-labelledby="Preview">
+          <li class="dropdown-title">Emails</li>
+          <li class="dropdown-item email-item">
+            <a class="nav-link" href="index.php">
+              <span class="media">
+					<span class="media-left media-middle"><i class="material-icons">mail</i></span>
+              <span class="media-body media-middle">
+						<small class="pull-xs-right text-muted">12:20</small>
+						<strong>Adrian Demian</strong>
+						Enhance your website with
+					</span>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown-item email-item">
+            <a class="nav-link" href="index.php">
+              <span class="media">
+					<span class="media-left media-middle">
+						<i class="material-icons">mail</i>
+					</span>
+              <span class="media-body media-middle">
+						<small class="text-muted pull-xs-right">30 min</small>
+						<strong>Michael Brain</strong>
+						Partnership proposal
+					</span>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown-item email-item">
+            <a class="nav-link" href="index.php">
+              <span class="media">
+					<span class="media-left media-middle">
+						<i class="material-icons">mail</i>
+					</span>
+              <span class="media-body media-middle">
+						<small class="text-muted pull-xs-right">1 hr</small>
+						<strong>Sammie Downey</strong>
+						UI Design
+					</span>
+              </span>
+            </a>
+          </li>
+          <li class="dropdown-action center">
+            <a href="email.html">Go to inbox</a>
+          </li>
+        </ul>
+      </li>
+      <!-- // END Notifications dropdown -->
+
+      <!-- User dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link active dropdown-toggle p-a-0" data-toggle="dropdown" href="index.php#" role="button" aria-haspopup="false">
+          <img src="{{url_for('static',filename='assets/images/people/50/profile.jpg')}}" alt="Avatar" class="img-circle" width="40">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-menu-list" aria-labelledby="Preview">
+          <a class="dropdown-item" href="profile"><i class="material-icons md-18">lock</i> <span class="icon-text">Perfil de Usuario</span></a>
+          <a class="dropdown-item" href="logout">Cerrar Sesion</a>
+        </div>
+      </li>
+      <!-- // END User dropdown -->
+
+    </ul>
+    <!-- // END Menu -->
+
+  </nav>
+  <!-- // END Navbar -->
+
+  <!-- Sidebar -->
+  <div class="sidebar sidebar-left sidebar-size-3 sidebar-visible-md-up sidebar-dark bg-primary simplebar sidebar-visible" id="sidebarLeft" data-scrollable="" style="overflow: auto;">
+
+    <!-- Brand -->
+    <a href="dashboard" class="sidebar-brand sidebar-brand-border sidebar-brand-bg m-b-0">
+      <i class="material-icons">flash_on</i> {{title_dashboard}}
+    </a>
+
+    <!-- User -->
+    <a href="profile" class="sidebar-link sidebar-user m-b-0">
+      <img src="{{url_for('static',filename='assets/images/people/50/profile.jpg')}}" alt="user" class="img-circle"> {{user}}
+    </a>
+    <!-- // END User -->
+
+    <!-- Menu -->
+    <ul class="sidebar-menu sm-bordered sm-active-button-bg" data-toggle="sidebar-collapse">
+
+      <li class="sidebar-menu-item <?php if(Security::returnGetSanitized('seccion')=='reportes'){echo 'active';}?>">
+        <a class="sidebar-menu-button" href="data">
+          <i class="sidebar-menu-icon material-icons">description</i> Visualizaciones
+        </a>
+      </li>    
+
+
+      <li class="sidebar-menu-item <?php if(Security::returnGetSanitized('seccion')=='reportes'){echo 'active';}?>">
+        <a class="sidebar-menu-button" href="report">
+          <i class="sidebar-menu-icon material-icons">description</i> Reportes
+        </a>
+      </li>    
+
+      <li class="sidebar-menu-item <?php if(Security::returnGetSanitized('seccion')=='chat'){echo 'active';}?>">
+        <a class="sidebar-menu-button" href="chat">
+          <i class="sidebar-menu-icon material-icons">message</i> Chat
+        </a>
+      </li>    
+    </ul>
+    <!-- // END Menu -->
+    <!-- Stats -->
+    <div class="sidebar-stats">
+      <div class="sidebar-stats-lead text-primary">
+        <span>410</span>
+        <small class="text-success">
+        {{ahora}}
+        </small>
+      </div>
+      <small>Fecha y Hora</small>
+    </div>
+    <!-- // END Stats -->
+
+  </div>
+  <!-- // END Sidebar -->
+
+  <!-- Right Sidebars -->
+
+  <!-- Content -->
+  <!-- Content -->
+  <div class="layout-content simplebar" data-scrollable="" style="overflow: auto;">
+    <div class="container-fluid">
+    {% block content %}{% endblock %}    
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="{{url_for('static',filename='assets/vendor/jquery.min.js')}}"></script>
+
+  <!-- Bootstrap -->
+  <script src="{{url_for('static',filename='assets/vendor/tether.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap.min.js')}}"></script>
+
+  <!-- Simplebar.js -->
+  <script src="{{url_for('static',filename='assets/vendor/simplebar.min.js')}}"></script>
+
+  <!-- Bootstrap Layout -->
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-layout.js')}}"></script>
+
+  <!-- Bootstrap Layout Scrollable Extension JS -->
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-layout-scrollable.js')}}"></script>
+
+  <!-- Theme Colors -->
+  <script src="{{url_for('static',filename='assets/js/colors.js')}}"></script>
+
+  <!-- morris.js Charts -->
+  <script src="{{url_for('static',filename='assets/vendor/raphael.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/morris.min.js')}}"></script>
+
+  <!-- Chart.js -->
+  <script src="{{url_for('static',filename='assets/vendor/Chart.min.js')}}"></script>
+
+  <!-- Init -->
+  <script src="{{url_for('static',filename='assets/js/chart.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/chartjs.js')}}"></script>
+
+    <!-- Vendor JS -->
+  <script src="{{url_for('static',filename='assets/vendor/jquery.dataTables.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/dataTables.bootstrap.js')}}"></script>
+
+  <!-- Initialize -->
+  <script src="{{url_for('static',filename='assets/js/datatables.js')}}"></script>
+
+
+  <script src="{{url_for('static',filename='assets/vendor/jquery.bootstrap-touchspin.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-datepicker.min.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/bootstrap-timepicker.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/vendor/summernote.min.js')}}"></script>
+
+  <!-- Init -->
+  <script src="{{url_for('static',filename='assets/js/date-time.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/summernote.js')}}"></script>
+  <script src="{{url_for('static',filename='assets/js/touchspin.js')}}"></script>
+  <!-- Vendor JS -->
+  <script src="{{url_for('static',filename='assets/vendor/sweetalert.min.js')}}"></script>
+
+  <!-- Initialize -->
+  <script src="{{url_for('static',filename='assets/js/sweetalert.js"')}}></script>
+  
+</body></html>
