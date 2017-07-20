@@ -160,14 +160,14 @@ require [
       window.map_view.render(window.map_view.opts)
 
     # Método de error para geoubicación
-    geolocationErrorCallback: (err)->
+    geolocationErrorCallback: (err)=>
       if err.code == 1
         console.log "Denied by user."
         position =
             coords:
                 latitude : -28.4601593
                 longitude: -65.7642746
-        storePosition position
+        @storePosition position
 
 
   # Inicia la aplicación
