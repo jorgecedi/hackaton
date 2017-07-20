@@ -39,6 +39,16 @@
             height: 500px;
             top:0px;
         }
+        #loading_gif{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
     <div id="lista" class="card-header">
     </div>
@@ -89,6 +99,7 @@ function changeMap(tipo, t){
 
     <div id="loading">
 
+        <img src="{{ url_for('static', filename="assets/img/loading.gif")}}" style="width: 50px;" id="loading_gif"/>
     </div>
 </div>
 {% endblock %}
