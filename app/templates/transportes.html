@@ -1,34 +1,53 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="card">
-        <div class="card-header"></div>
-        <table class="table table-bordered">
-          <thead>
+    <div class="card-header"></div>
+    <table class="table table-bordered">
+        <thead>
             <tr>
-              <td align="center"> #</td>
-              <td align="center"> Razon Social</td>
-              <td align="center"> Rodados</td>
-              <td align="center" > Localidad</td>
-              <td align="center" > Correo</td>
-              <td align="center"> Telefonos </td>
-              <td align="center"> Opciones</td>
+                <td align="center"> #</td>
+                <td align="center"> Razon Social</td>
+                <td align="center"> Rodados</td>
+                <td align="center" > Localidad</td>
+                <td align="center" > Correo</td>
+                <td align="center"> Telefonos </td>
+                <td align="center"> Opciones</td>
             </tr>
-          </thead>
-          <tbody style="font-size:10px;">
-        {% for transporte in transportes %} 
+        </thead>
+        <tbody style="font-size:10px;">
+            {% for transporte in transportes %}
             <tr>
-              <td  width="5%" align="left"> {{transporte.pk}}</td> 
-              <td  width="20%"> {{transporte.razon_social}}</td> 
-              <td  width="10%" align="center"> {{transporte.rodados}}</td> 
-              <td width="10%">{{transporte.localidad}}</td>
-              <td  width="10%" > {{transporte.email}}</td>
-              <td width="10%" > {{transporte.telefonos}}</td>
-              <td  width="18%" align="center" >
-              	<a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
-            </tr>
+                <td  width="5%" align="center"> {{transporte.pk}}</td>
+                <td  width="20%"> {{transporte.razon_social}}</td>
+                <td  width="15%" >
+                    <ul>
+                        {% for r in transporte.rodados %}
+                        <li>
+                            {{r}}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td width="10%">{{transporte.localidad.nombre }}</td>
+                <td  width="10%" > {{transporte.email}}</td>
+                <td >
+                    <ul>
+                        {% for t in transporte.telefonos %}
+                        <li>
+                            <p>
+                                Número: {{ t.numero }}<br/>
+                                Tipo: {{ t.tipo }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td  width="10%" align="center" >
+                    <a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
+                </tr>
 
-        {% endfor %}
-          </tbody>
+                {% endfor %}
+            </tbody>
         </table>
-      </div>
-{% endblock %}
+    </div>
+    {% endblock %}
