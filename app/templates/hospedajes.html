@@ -1,38 +1,59 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="card">
-        <div class="card-header"></div>
-        <table class="table table-bordered">
-          <thead>
+    <div class="card-header"></div>
+    <table class="table table-bordered">
+        <thead>
             <tr>
-              <td align="center"> #</td>
-              <td align="center"> Nombre</td>
-              <td align="center" > Localidad</td>
-              <td align="center" > Departamento</td>
-              <td align="center"> Servicios</td>
-              <td align="center" > Categoria</td>
-              <td align="center"> Tarifas </td>
-              <td align="center"> Opciones</td>
+                <td align="center"> #</td>
+                <td align="center"> Nombre</td>
+                <td align="center" > Localidad</td>
+                <td align="center" > Departamento</td>
+                <td align="center"> Servicios</td>
+                <td align="center" > Categoria</td>
+                <td align="center"> Tarifas </td>
+                <td align="center"> Opciones</td>
             </tr>
-          </thead>
-          <tbody style="font-size:10px;">
-        {% for hospedaje in hospedajes %} 
+        </thead>
+        <tbody style="font-size:10px;">
+            {% for hospedaje in hospedajes %} 
             <tr>
-              <td  width="5%" align="left"> {{hospedaje.id}}</td> 
-              <td  width="10%"> {{hospedaje.clase.nombre}}</td> 
-              <td   > {{hospedaje.localidad.nombre}}</td> 
-              <td   > {{hospedaje.localidad.departamento}}</td>
+                <td  width="5%" align="left"> {{hospedaje.id}}</td> 
+                <td  width="10%"> {{hospedaje.nombre}}</td> 
+                <td   > {{hospedaje.localidad.nombre}}</td> 
+                <td   > {{hospedaje.localidad.departamento}}</td>
 
-              <td >{{hospedaje.servicios}}</td>
-              <td  > {{hospedaje.tarifas}}</td>
-              <td  width="18%" align="center" >
-              	<a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
-				<a class="btn btn-info btn-rounded btn-xs" href=""><i class="material-icons">map</i></a>
-				<a class="btn btn-success btn-rounded btn-xs" href="{{hospedaje.url_certificado_nacional}}" target="_blank"><i class="material-icons">check</i></a>
+                <td>
+                    <ul>
+                        {% for s in hospedaje.servicios %}
+                        <li>{{ s }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {{ hospedaje.clase.nombre }}
+                </td>
+                <td>
+                    <ul>
+                        {% for t in hospedaje.tarifas %}
+                        <li>
+                            <p>
+                                Precio: {{ t.monto }}<br/>
+                                Concepto: {{ t.concepto }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td  width="18%" align="center" >
+                    <a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
+                    <a class="btn btn-info btn-rounded btn-xs" href=""><i class="material-icons">map</i></a>
+                    <a class="btn btn-success btn-rounded btn-xs" href="{{hospedaje.url_certificado_nacional}}" target="_blank"><i class="material-icons">check</i></a>
+                </td>
             </tr>
 
-        {% endfor %}
-          </tbody>
-        </table>
-      </div>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
