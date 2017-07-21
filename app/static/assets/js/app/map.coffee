@@ -13,7 +13,7 @@ require [
   "underscore",
   "backbone",
   "geoPosition",
-  "async!http://maps.google.com/maps/api/js?sensor=false&v=3"],  (Handlebars) ->
+  "async!http://maps.google.com/maps/api/js?key=AIzaSyCczG2v_nYfo0BQfxcxrf_DTKhjTqQJpfo&sensor=false&v=3"],  (Handlebars) ->
 
   namespace = "Mapas"
   class MarkerModel extends  Backbone.Model
