@@ -191,10 +191,26 @@
                 }
                 $("#lista").append('<div id="list_item_' + marker_id + '" class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>');
                 $("#list_item_" + marker_id).on('mouseover', function(evt) {
-                  return self.markers[marker_id].setIcon(pinsBigImage);
+                  if (infowindow.getMap() === null || !infowindow) {
+                    return self.markers[marker_id].setIcon(pinsBigImage);
+                  }
                 });
                 $("#list_item_" + marker_id).on('mouseout', function(evt) {
-                  return self.markers[marker_id].setIcon(pinsImage);
+                  if (infowindow.getMap() === null || !infowindow) {
+                    return self.markers[marker_id].setIcon(pinsImage);
+                  }
+                });
+                $("#list_item_" + marker_id).on('click', function(evt) {
+                  var last_model;
+                  if (infowindow) {
+                    infowindow.close();
+                  }
+                  infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    disableAutoPan: false
+                  });
+                  infowindow.open(self.map, self.markers[marker_id]);
+                  last_model = m;
                 });
                 if (self.opts.popupTemplate) {
                   template = Handlebars.compile(self.opts.popupTemplate);

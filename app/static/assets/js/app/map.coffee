@@ -139,24 +139,26 @@ require [
                     domicilio = m.get('domicilio')
                 $("#lista").append('<div id="list_item_' + marker_id + '" class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>')
                 $("#list_item_" + marker_id ).on 'mouseover',(evt)->
-                    self.markers[marker_id].setIcon pinsBigImage
+                    if infowindow.getMap() == null or !infowindow
+                        self.markers[marker_id].setIcon pinsBigImage
 
                 $("#list_item_" + marker_id ).on 'mouseout',(evt)->
-                    self.markers[marker_id].setIcon pinsImage
+                    if infowindow.getMap() == null or !infowindow
+                        self.markers[marker_id].setIcon pinsImage
 
-                #$("#list_item_" + marker_id ).on 'click',(evt)->
-                #    if infowindow
-                #      infowindow.close()
+                $("#list_item_" + marker_id ).on 'click',(evt)->
+                    if infowindow
+                      infowindow.close()
 
-                #    infowindow = new google.maps.InfoWindow
-                #      content: contentString
-                #      disableAutoPan: false
+                    infowindow = new google.maps.InfoWindow
+                      content: contentString
+                      disableAutoPan: false
 
 
-                #    infowindow.open self.map, self.markers[marker_id]
-                #    last_model = m
-                #    return
-                ##console.log $("#lista")
+                    infowindow.open self.map, self.markers[marker_id]
+                    last_model = m
+                    return
+                #console.log $("#lista")
 
                 if self.opts.popupTemplate
                   template = Handlebars.compile(self.opts.popupTemplate)
