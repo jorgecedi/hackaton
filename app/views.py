@@ -34,6 +34,22 @@ def hospedajes():
 
 	return render_template('hospedajes.html',title='Hospedajes Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',hospedajes=hospedajes)
 
+
+
+
+#Seccion Hospedajes
+@app.route('/detalle_hospedaje',methods=["GET","POST"])
+def detalle_hospedaje():
+	id = request.args.get("id")
+	url = 'https://sgtur.catamarca.gob.ar/api/v1/hospedaje/'
+	hospedaje = requests.get(url+id)
+	hospedaje = hospedaje.json()
+
+	return render_template('detalle_hospedaje.html',title='Detalle Hospedaje Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',hospedaje=hospedaje)
+
+
+
+
 #Seccion Guias
 @app.route('/guias',methods=["GET","POST"])
 def guias():

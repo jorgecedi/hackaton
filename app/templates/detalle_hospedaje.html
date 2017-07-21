@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid">
+      <div id="invoice">
+<div class="card">
+          <div class="card-button-wrapper">
+            <a href="javascript:window.print()" class="btn btn-primary btn-sm hidden-print">
+              <i class="material-icons md-18">print</i> Imprimir
+            </a>
+
+          </div>
+          <div class="card-block">
+            <h2 class="center m-t-2 m-b-3">
+              <strong>Detalle Hospedaje : {{hospedaje.nombre}}</strong>
+            </h2>
+            <div class="row">
+              <div class="col-xs-6">
+                <p>
+                  <strong>Domicilio</strong>
+                  <br> {{hospedaje.nombre}}                  <br> {{hospedaje.localidad.nombre}} -  {{hospedaje.localidad.departamento}}             </p>
+              </div>
+              <div class="col-xs-6">
+                <p>
+                 
+                 </p>
+              </div>
+            </div>
+          </div>
+          <table class="table table-striped table-fit">
+            <thead>
+              <tr>
+                <th>
+                  Servicios
+                </th>
+
+              </tr>
+            </thead>
+            <tbody>
+             <tr>
+                <td>
+                    <ul>
+                        {% for s in hospedaje.servicios %}
+                        <li>{{ s }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Clase
+                </th>
+
+              </tr>
+
+
+             <tr>
+                <td>
+                    <ul>
+                        
+                        <li>{{hospedaje.clase.nombre }}</li>
+                    </ul>
+                </td>
+              </tr>
+        
+                     <tr>
+                <th>
+                  Tarifas
+                </th>
+
+              </tr>
+
+
+             <tr>
+                <td>
+                    <ul>
+                        {% for t in hospedaje.tarifas %}
+                        <li>
+                            <p>
+                                Precio: {{ t.monto }}<br/>
+                                Concepto: {{ t.concepto }}
+                            </p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                                    </td>
+              </tr>                
+
+                        </tbody>
+          </table>
+
+
+
+          </div>
+        </div>
+</div>
+
+
+
+    </div>
+
+{% endblock %}
