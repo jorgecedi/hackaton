@@ -8,9 +8,7 @@ El servidor es una aplicación desarrollada en Python con el framework Flask.
 
 El API de turismo se encuentra en la siguiente dirección.
 
-```text
 https://sgtur.catamarca.gob.ar/api/v1/
-```
 
 ## Instalación
 
