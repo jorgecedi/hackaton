@@ -90,7 +90,7 @@ require [
       if opts.yourPositionMarker == true
         @setCenterMarker(new google.maps.LatLng(@center.lat, @center.lng), opts.centerPin)
       if opts.url
-        @fetchMarkers(opts.url, opts.pinsImage)
+        @fetchMarkers(opts.url, opts.pinsImage, opts.pinsBigImage)
 
     setCenterMarker: (position, pinImage)->
       @centerMarker = new google.maps.Marker
@@ -100,7 +100,7 @@ require [
         title: "Mi posición"
       @bounds.extend @centerMarker.getPosition()
 
-    fetchMarkers: (url, pinsImage = null)->
+    fetchMarkers: (url, pinsImage = null, pinsBigImage = null)->
       list = new MarkerList({
         url: url
       })
@@ -112,7 +112,8 @@ require [
           $("#loading").hide()
           list.forEach (m, i)->
             if m.get('geometry') or m.get('ubicacion')
-                console.log m.get('geometry')
+                marker_id = m.get('id') or m.get('pk')
+                #console.log m.get('geometry')
                 lat = 0
                 lng = 0
                 if m.get 'geometry'
@@ -121,8 +122,8 @@ require [
                 if m.get 'ubicacion'
                     lat = m.get('ubicacion')['coordinates'][1]
                     lng = m.get('ubicacion')['coordinates'][0]
-                console.log lat,lng
-                self.markers[m.get 'id'] = new google.maps.Marker
+                #console.log lat,lng
+                self.markers[marker_id] = new google.maps.Marker
                   position: new google.maps.LatLng lat, lng
                   map: self.map
                   title: "H",
@@ -136,15 +137,33 @@ require [
                 else
                     nombre = m.get('nombre')
                     domicilio = m.get('domicilio')
-                $("#lista").append('<div class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>')
-                console.log $("#lista")
+                $("#lista").append('<div id="list_item_' + marker_id + '" class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>')
+                $("#list_item_" + marker_id ).on 'mouseover',(evt)->
+                    self.markers[marker_id].setIcon pinsBigImage
+
+                $("#list_item_" + marker_id ).on 'mouseout',(evt)->
+                    self.markers[marker_id].setIcon pinsImage
+
+                #$("#list_item_" + marker_id ).on 'click',(evt)->
+                #    if infowindow
+                #      infowindow.close()
+
+                #    infowindow = new google.maps.InfoWindow
+                #      content: contentString
+                #      disableAutoPan: false
+
+
+                #    infowindow.open self.map, self.markers[marker_id]
+                #    last_model = m
+                #    return
+                ##console.log $("#lista")
 
                 if self.opts.popupTemplate
                   template = Handlebars.compile(self.opts.popupTemplate)
                   contentString = template({m:m})
-                  console.log m
+                  #console.log m
 
-                  google.maps.event.addListener self.markers[m.get 'id'], 'click', ->
+                  google.maps.event.addListener self.markers[marker_id], 'click', ->
                     if infowindow
                       infowindow.close()
                     #markers[business.get 'id'].setIcon regularBigPin
@@ -156,11 +175,12 @@ require [
                       disableAutoPan: false
 
 
-                    infowindow.open self.map, self.markers[m.get 'id']
+                    infowindow.open self.map, self.markers[marker_id]
                     last_model = m
                     return
 
-                self.bounds.extend self.markers[m.get 'id'].getPosition()
+                self.bounds.extend self.markers[marker_id].getPosition()
+          console.log self.markers
           self.map.fitBounds(self.bounds)
 
     # Obtiene ubicación mediante la biblioteca geoposition.js y la guarda en cookies y en la instancia de la aplicación

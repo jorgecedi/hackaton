@@ -128,7 +128,7 @@
           this.setCenterMarker(new google.maps.LatLng(this.center.lat, this.center.lng), opts.centerPin);
         }
         if (opts.url) {
-          return this.fetchMarkers(opts.url, opts.pinsImage);
+          return this.fetchMarkers(opts.url, opts.pinsImage, opts.pinsBigImage);
         }
       };
 
@@ -142,10 +142,13 @@
         return this.bounds.extend(this.centerMarker.getPosition());
       };
 
-      MapView.prototype.fetchMarkers = function(url, pinsImage) {
+      MapView.prototype.fetchMarkers = function(url, pinsImage, pinsBigImage) {
         var list, self;
         if (pinsImage == null) {
           pinsImage = null;
+        }
+        if (pinsBigImage == null) {
+          pinsBigImage = null;
         }
         list = new MarkerList({
           url: url
@@ -158,9 +161,9 @@
             $("#lista").html(null);
             $("#loading").hide();
             list.forEach(function(m, i) {
-              var contentString, domicilio, lat, lng, nombre, template;
+              var contentString, domicilio, lat, lng, marker_id, nombre, template;
               if (m.get('geometry') || m.get('ubicacion')) {
-                console.log(m.get('geometry'));
+                marker_id = m.get('id') || m.get('pk');
                 lat = 0;
                 lng = 0;
                 if (m.get('geometry')) {
@@ -171,8 +174,7 @@
                   lat = m.get('ubicacion')['coordinates'][1];
                   lng = m.get('ubicacion')['coordinates'][0];
                 }
-                console.log(lat, lng);
-                self.markers[m.get('id')] = new google.maps.Marker({
+                self.markers[marker_id] = new google.maps.Marker({
                   position: new google.maps.LatLng(lat, lng),
                   map: self.map,
                   title: "H",
@@ -187,15 +189,19 @@
                   nombre = m.get('nombre');
                   domicilio = m.get('domicilio');
                 }
-                $("#lista").append('<div class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>');
-                console.log($("#lista"));
+                $("#lista").append('<div id="list_item_' + marker_id + '" class="ubicacion card-header"> <b>' + nombre + '</b> <p>Domicilio: ' + domicilio + '</p></div>');
+                $("#list_item_" + marker_id).on('mouseover', function(evt) {
+                  return self.markers[marker_id].setIcon(pinsBigImage);
+                });
+                $("#list_item_" + marker_id).on('mouseout', function(evt) {
+                  return self.markers[marker_id].setIcon(pinsImage);
+                });
                 if (self.opts.popupTemplate) {
                   template = Handlebars.compile(self.opts.popupTemplate);
                   contentString = template({
                     m: m
                   });
-                  console.log(m);
-                  google.maps.event.addListener(self.markers[m.get('id')], 'click', function() {
+                  google.maps.event.addListener(self.markers[marker_id], 'click', function() {
                     var last_model;
                     if (infowindow) {
                       infowindow.close();
@@ -204,13 +210,14 @@
                       content: contentString,
                       disableAutoPan: false
                     });
-                    infowindow.open(self.map, self.markers[m.get('id')]);
+                    infowindow.open(self.map, self.markers[marker_id]);
                     last_model = m;
                   });
                 }
-                return self.bounds.extend(self.markers[m.get('id')].getPosition());
+                return self.bounds.extend(self.markers[marker_id].getPosition());
               }
             });
+            console.log(self.markers);
             return self.map.fitBounds(self.bounds);
           }
         });

@@ -27,6 +27,8 @@
             overflow: auto;
         }
         .ubicacion{
+            cursor: pointer;
+            cursor: hand;
             width:90%;
             min-height: 50px;
             margin: 10px auto;
@@ -70,6 +72,7 @@
                 url: 'https://sgtur.catamarca.gob.ar/api/v1/agencia/?geojson=true&dist=400000&format=json',
                 yourPositionMarker: true,
                 pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
+                pinsBigImage: '{{ url_for("static", filename="assets/img/pin_big.png") }}',
                 //centerPin: '/img/pin.png',
                 popupTemplate: $("#template").html()
             });
@@ -89,6 +92,7 @@ function changeMap(tipo, t){
             url: 'https://sgtur.catamarca.gob.ar/api/v1/' + tipo + '/?geojson=true&dist=400000&format=json',
             yourPositionMarker: true,
             pinsImage: '{{ url_for("static", filename="assets/img/pin.png") }}',
+            pinsBigImage: '{{ url_for("static", filename="assets/img/pin_big.png") }}',
             //centerPin: '/img/pin.png',
             popupTemplate: $("#template").html()
         });
