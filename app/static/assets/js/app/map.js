@@ -4,7 +4,7 @@
     hasProp = {}.hasOwnProperty,
     bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
-  require(["handlebars", "jquery", "jquery-cookie", "underscore", "backbone", "geoPosition", "async!http://maps.google.com/maps/api/js?sensor=false&v=3"], function(Handlebars) {
+  require(["handlebars", "jquery", "jquery-cookie", "underscore", "backbone", "geoPosition", "async!http://maps.google.com/maps/api/js?key=AIzaSyCczG2v_nYfo0BQfxcxrf_DTKhjTqQJpfo&sensor=false&v=3"], function(Handlebars) {
     var MapView, MarkerList, MarkerModel, namespace;
     namespace = "Mapas";
     MarkerModel = (function(superClass) {
