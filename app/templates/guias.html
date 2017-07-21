@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+        <div class="card-header"></div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td align="center"> #</td>
+              <td align="center"> Nombre </td>
+              <td align="center" > Apellido</td>
+              <td align="center">  Telefono</td>
+              <td align="center" > Correo</td>
+              <td align="center"> Tipo</td>
+              <td align="center"> Opciones</td>
+
+            </tr>
+          </thead> 
+          <tbody style="font-size:10px;">
+        {% for guia in guias %} 
+            <tr>
+              <td  width="5%" align="left"> {{guia.pk}}</td> 
+              <td  width="10%"> {{guia.persona.nombre}}</td> 
+              <td  width="10%" > {{guia.persona.apellido}}</td> 
+              <td > {{guia.persona.telefonos}}</td>
+              <td  width="20%" > {{guia.persona.email}}</td>
+              <td width="12%" align="center"> {{guia.tipo}}</td>
+              <td  width="18%" align="center" >
+              	<a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
+				<a class="btn btn-info btn-rounded btn-xs" href=""><i class="material-icons">map</i></a>
+				<a class="btn btn-success btn-rounded btn-xs" href="{{guia.url_certificado_nacional}}" target="_blank" title="certificado nacional"><i class="material-icons" >check</i></a>
+            </tr>
+
+        {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% endblock %}

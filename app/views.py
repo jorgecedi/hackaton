@@ -12,18 +12,44 @@ def login():
 
 	return render_template('login.html')
 
-
+#Dashboard principal de la aplicacion
+@app.route('/',methods=["GET","POST"])
 @app.route('/dashboard',methods=["GET","POST"])
 def dash():
 	return render_template('dashboard.html',title='Dashboard Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy')
 
 
-@app.route('/report',methods=["GET","POST"])
-def report():
-	agencia = requests.get('https://sgtur.catamarca.gob.ar/api/v1/agencia/')
-	agencias = agencia.json()
+#Seccion Agencias
+@app.route('/agencias',methods=["GET","POST"])
+def agencias():
+	agencias = requests.get('https://sgtur.catamarca.gob.ar/api/v1/agencia/')
+	agencias = agencias.json()
+	return render_template('agencias.html',title='Agencias Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',agencias=agencias)
 
-	return render_template('report.html',title='Reportes Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',agencias=agencias)
+#Seccion Hospedajes
+@app.route('/hospedajes',methods=["GET","POST"])
+def hospedajes():
+	hospedajes = requests.get('https://sgtur.catamarca.gob.ar/api/v1/hospedaje/')
+	hospedajes = hospedajes.json()
+
+	return render_template('hospedajes.html',title='Hospedajes Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',hospedajes=hospedajes)
+
+#Seccion Guias
+@app.route('/guias',methods=["GET","POST"])
+def guias():
+	guias = requests.get('https://sgtur.catamarca.gob.ar/api/v1/guia/')
+	guias = guias.json()
+
+	return render_template('guias.html',title='Guias Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',guias=guias)
+
+#Seccion Transportes
+@app.route('/transportes',methods=["GET","POST"])
+def transportes():
+	transportes = requests.get('https://sgtur.catamarca.gob.ar/api/v1/transporte/')
+	transportes = transportes.json()
+
+	return render_template('transportes.html',title='Transportes Poncho 2017',title_dashboard='Poncho 2017',user='Daniel Godoy',transportes=transportes)
+
 
 @app.route('/profile',methods=["GET","POST"])
 def profile():

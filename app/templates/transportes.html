@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="card">
+        <div class="card-header"></div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td align="center"> #</td>
+              <td align="center"> Razon Social</td>
+              <td align="center"> Rodados</td>
+              <td align="center" > Localidad</td>
+              <td align="center" > Correo</td>
+              <td align="center"> CUIT </td>
+              <td align="center"> Opciones</td>
+            </tr>
+          </thead>
+          <tbody style="font-size:10px;">
+        {% for transporte in transportes %} 
+            <tr>
+              <td  width="5%" align="left"> {{transporte.pk}}</td> 
+              <td  width="20%"> {{transporte.razon_social}}</td> 
+              <td  width="10%" align="center"> {{transporte.rodados}}</td> 
+              <td width="10%">{{transporte.localidad}}</td>
+              <td  width="10%" > {{transporte.email}}</td>
+              <td width="10%" > {{transporte.telefonos}}</td>
+              <td  width="18%" align="center" >
+              	<a class="btn btn-warning btn-rounded btn-xs" href=""><i class="material-icons">zoom_in</i></a>
+				<a class="btn btn-info btn-rounded btn-xs" href=""><i class="material-icons">map</i></a>
+				<a class="btn btn-success btn-rounded btn-xs" href="{{transporte.url_certificado_nacional}}" target="_blank"><i class="material-icons">check</i></a>
+            </tr>
+
+        {% endfor %}
+          </tbody>
+        </table>
+      </div>
+{% endblock %}
